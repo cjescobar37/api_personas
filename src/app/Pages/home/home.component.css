@@ -1,0 +1,75 @@
+/* home.component.css */
+.container {
+  margin-top: 0px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.card {
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex; /* Utilizar flexbox */
+  flex-direction: column; /* Alinear elementos en columna */
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center; /* Centrar horizontalmente */
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  max-width: 200px; /* Limitar el ancho máximo de la imagen */
+  max-height: 200px; /* Limitar la altura máxima de la imagen */
+}
+
+.card-body {
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  background-color: #f5f5f5; /* Color de fondo gris moderno */
+  padding: 20px;
+}
+
+.example-card {
+  background-color: white; /* Color de fondo de las tarjetas */
+  border-radius: 8px; /* Bordes redondeados para las tarjetas */
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para las tarjetas */
+  overflow: hidden; /* Ocultar el desbordamiento de la imagen */
+}
+
+.example-card img {
+  width: 100%; /* La imagen ocupará todo el ancho de la tarjeta */
+  height: auto; /* La altura se ajustará automáticamente */
+  object-fit: cover; /* Ajustar la imagen dentro de la tarjeta */
+  border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior de la imagen */
+}
+
+.title-container {
+  text-align: center; /* Centrar el contenido del contenedor */
+  margin-bottom: 20px; /* Espaciado inferior del contenedor */
+}
+.card-title {
+  
+  font-size: 35px; /* Reducir el tamaño de fuente en dispositivos móviles */
+}
+@media screen and (max-width: 768px) {
+  .card-title {
+    font-size: 24px; /* Reducir el tamaño de fuente en dispositivos móviles */
+  }
+}

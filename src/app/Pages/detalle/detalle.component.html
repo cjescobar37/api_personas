@@ -1,0 +1,24 @@
+<h1>Detalle del Alumno</h1> 
+
+<div class="loading" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div class="loading" *ngIf="isError">
+    <h2>ERROR 404: NOT FOUND</h2>
+</div>
+
+<div *ngIf="!isLoading && !isError" class="row row-cols-1 row-cols-md-2 g-4">  
+    <mat-card class="example-card">
+    <mat-card-title-group>
+      <mat-card-title>{{alumnos?.name}}</mat-card-title>
+      <mat-card-subtitle>{{alumnos?.species | uppercase}} ({{alumnos.type | uppercase}})</mat-card-subtitle>
+      <mat-card-subtitle>{{alumnos?.gender | uppercase}}</mat-card-subtitle>
+      <mat-card-subtitle>{{alumnos?.origin.name | uppercase}}</mat-card-subtitle>
+      <mat-card-subtitle>{{alumnos?.status | uppercase}}</mat-card-subtitle>
+      <mat-card-subtitle>{{alumnos?.created | uppercase}}</mat-card-subtitle>
+      <mat-card-subtitle>    <button routerLink="/"class="boton" mat-flat-button color="primary">Volver</button></mat-card-subtitle>
+      <img mat-card-lx-image src="{{alumnos?.image}}" >
+    </mat-card-title-group>
+  </mat-card>
+</div>

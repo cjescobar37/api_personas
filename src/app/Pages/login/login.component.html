@@ -1,0 +1,20 @@
+<form [formGroup]="myForm" Class="form" (ngSubmit)="login()">
+
+                <div>
+                    <input type="text" formControlName="correo" placeholder="e-mail" [ngClass]="{error:myForm.get('correo')?.hasError('required') && myForm.get('correo')?.dirty}">
+                </div>
+                    <div class="mensajes" *ngIf="myForm.get('correo')?.errors && myForm.get('correo')?.dirty">
+                        Debe rellenar este campo..
+                    </div>
+
+                <div>
+                    <input type="password" formControlName="clave" placeholder="Contraseña" [ngClass]="{error:myForm.get('clave')?.hasError('required') && myForm.get('clave')?.dirty, warning:myForm.get('clave')?.hasError('minlength') && myForm.get('clave')?.dirty, warning2:myForm.get('clave')?.hasError('maxlength') && myForm.get('clave')?.dirty }">
+                </div>
+                    <div class="mensajes" *ngIf="myForm.get('clave')?.errors && myForm.get('clave')?.dirty">
+                        <p *ngIf="myForm.get('clave')?.hasError('required')">Debe rellenar este campo</p> 
+                        <p *ngIf="myForm.get('clave')?.hasError('minlength')">Ingresar mas de 6 caracteres</p> 
+                        <p *ngIf="myForm.get('clave')?.hasError('maxlength')">Ingresar menos de 10 caracteres</p> 
+                    </div>
+
+        <button type="submit" [disabled]="myForm.invalid">Ingresar</button><br/>
+</form>

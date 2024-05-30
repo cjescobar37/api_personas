@@ -1,0 +1,36 @@
+.masculino{
+    background-color: rgb(179, 214, 255);
+}
+
+.femenino{
+    background-color: rgb(252, 221, 255);
+}
+.example-card {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    background-color:rgb(247, 247, 248);
+  }
+
+  h1{
+    font-size: 40px;
+    padding-top: 80px;
+    margin-bottom:3%;
+    padding-bottom: 10px;
+    border-bottom: 2px solid;
+    text-align:center;
+  }
+
+  .boton {
+    margin-top: 15px;
+  }
+
+  .loading{
+    position: fixed;
+    left : 46%;
+    bottom : 0;
+    right : 0;
+    top : 50%;
+  }
+  

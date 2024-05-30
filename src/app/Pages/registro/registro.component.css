@@ -1,0 +1,64 @@
+
+body { color: rgb(197, 13, 13); }
+
+
+.error{
+    background-color: rgb(255, 0, 0)
+}
+
+.success{
+    background-color: green;
+
+}
+
+.warning{
+    background-color: yellow;
+}
+
+.warning2{
+  background-color: yellow;
+}
+
+.mensajes{
+  color: rgb(255, 255, 255);
+  font-size: 11px;
+  width: 200px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.form{
+  background-color: rgb(93, 114, 173);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form input {
+    width: 90%;
+    height: 30px;
+    margin: 0.5rem;
+  }
+  
+  .form button {
+    color: white;
+    padding: 0.5em 1em;
+    border: none;
+    background: rgb(28, 137, 196);
+    cursor: pointer;
+  }
+
+  .form button:disabled {
+    background: rgb(158, 158, 158);
+  }
+
+.form label{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    color: white;
+}

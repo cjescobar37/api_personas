@@ -1,0 +1,22 @@
+<div class="title-container">
+  <h1 class="card-title">Listado de Usuarios</h1>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="loading" *ngIf="isError">
+  <h2>ERROR 404: NOT FOUND</h2>
+</div>
+
+<div *ngIf="!isLoading && !isError" class="card-container">
+  <mat-card class="example-card" *ngFor="let usuario of usuariosAsync; let i = index">
+    <mat-card-title-group>
+      <mat-card-title>{{ usuario.name.first }} {{ usuario.name.last }}</mat-card-title>
+      <mat-card-subtitle>{{ usuario.gender }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ usuario.email }}</mat-card-subtitle>
+    </mat-card-title-group>
+    <img mat-card-lg-image [src]="usuario.picture.large">
+  </mat-card>
+</div>
