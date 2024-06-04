@@ -62,18 +62,20 @@ pipeline {
             emailext (
                 subject: "Pipeline Successful",
                 body: "Your pipeline has completed successfully.",
-                to: "your-email@example.com"
+                to: "cjescobar37@gmail.com"
             )
         }
         failure {
             emailext (
                 subject: "Pipeline Failed",
                 body: "Your pipeline has failed. Please investigate.",
-                to: "your-email@example.com"
+                to: "cjescobar37@gmail.com"
             )
         }
         always {
-            cleanWs()
+            node {
+                cleanWs()
+            }
         }
     }
 }
