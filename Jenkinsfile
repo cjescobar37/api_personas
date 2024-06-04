@@ -56,24 +56,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        success {
-            emailext (
-                subject: "Pipeline Successful",
-                body: "Your pipeline has completed successfully.",
-                to: "cjescobar37@gmail.com"
-            )
-        }
-        failure {
-            emailext (
-                subject: "Pipeline Failed",
-                body: "Your pipeline has failed. Please investigate.",
-                to: "cjescobar37@gmail.com"
-            )
-        }
-        always {
-            deleteDir()
-        }
-        }
-    }
+ }
