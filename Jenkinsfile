@@ -73,9 +73,8 @@ pipeline {
             )
         }
         always {
-            node {
-                cleanWs()
-            }
+            deleteDir()
+        }
         }
     }
 }
