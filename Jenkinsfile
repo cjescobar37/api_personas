@@ -2,57 +2,51 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = 'c1867532-75be-49ff-ad27-a5d29d6aa100' // Usar el ID del conjunto de credenciales correcto
-        IMAGE_NAME = 'cescobar37/imagen_prueba_1'
-        VERSION = 'v1.0.0'
+        DOCKERHUB_CREDENTIALS_ID = 'c1867532-75be-49ff-ad27-a5d29d6aa100' 
+        DOCKERHUB_REPOSITORY = 'cescobar37/devopsprueba1'
+        IMAGE_NAME = 'cescobar37/devopsprueba1:latest'
+        TAG = "latest"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/cjescobar37/api_personas.git'
+                script {
+                    git url: 'https://github.com/cescobar37/Api.git', branch: 'main'
+                }
             }
         }
-
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    dockerImage = docker.build("${DOCKERHUB_REPOSITORY}:${TAG}")
+                }
+            }
+        }
         stage('Lint Dockerfile') {
             steps {
-                sh 'hadolint Dockerfile'
-            }
-        }
-
-        stage('Build Image') {
-            steps {
                 script {
-                    docker.build("${IMAGE_NAME}:${VERSION}")
+                    def hadolintPath = 'C:\\util\\hadolint.exe'
+                    def dockerfilePath = "${WORKSPACE}\\Dockerfile"
+
+                    bat "${hadolintPath} ${dockerfilePath}"
                 }
             }
         }
-
-        stage('Unit Tests') {
-            steps {
-                sh "docker run --rm ${IMAGE_NAME}:${VERSION} ./run-unit-tests.sh"
-            }
-        }
-
-        stage('Integration Tests') {
-            steps {
-                sh "docker run --rm ${IMAGE_NAME}:${VERSION} ./run-integration-tests.sh"
-            }
-        }
-
-        stage('Publish Image') {
+        stage('Run Docker Container') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', "${DOCKERHUB_CREDENTIALS}") {
-                        docker.image("${IMAGE_NAME}:${VERSION}").push()
+                    dockerImage.run("-d -p 8080:80")
+                }
+            }
+        }
+        stage('Push to DockerHub') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS_ID) {
+                        dockerImage.push("${TAG}")
                     }
                 }
-            }
-        }
-
-        stage('Deploy to Kubernetes') {
-            steps {
-                sh 'kubectl apply -f deployment.yaml'
             }
         }
     }
