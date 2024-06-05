@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-token') // Usar el ID del token creado
+        DOCKERHUB_CREDENTIALS = credentials('docker-token') // Usar el ID del token creado
         IMAGE_NAME = 'cescobar37/imagen_prueba_1'
         VERSION = 'v1.0.0'
     }
