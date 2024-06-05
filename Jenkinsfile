@@ -23,28 +23,28 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    docker.build("${env.IMAGE_NAME}:${VERSION}")
+                    docker.build("${IMAGE_NAME}:${VERSION}")
                 }
             }
         }
 
         stage('Unit Tests') {
             steps {
-                sh 'docker run --rm ${env.IMAGE_NAME}:${VERSION} ./run-unit-tests.sh'
+                sh "docker run --rm ${IMAGE_NAME}:${VERSION} ./run-unit-tests.sh"
             }
         }
 
         stage('Integration Tests') {
             steps {
-                sh 'docker run --rm ${env.IMAGE_NAME}:${VERSION} ./run-integration-tests.sh'
+                sh "docker run --rm ${IMAGE_NAME}:${VERSION} ./run-integration-tests.sh"
             }
         }
 
         stage('Publish Image') {
             steps {
                 script {
-                    docker.withRegistry('', "${DOCKERHUB_CREDENTIALS}") {
-                        docker.image("${env.IMAGE_NAME}:${VERSION}").push()
+                    docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
+                        docker.image("${IMAGE_NAME}:${VERSION}").push()
                     }
                 }
             }
@@ -56,4 +56,4 @@ pipeline {
             }
         }
     }
- }
+}
