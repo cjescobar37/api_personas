@@ -8,14 +8,13 @@ pipeline {
         TAG = "latest"
     }
 
-    stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    git url: 'https://github.com/cescobar37/Api.git', branch: 'main'
-                }
-            }
+   stage('Checkout') {
+    steps {
+        script {
+            git url: 'https://github.com/cescobar37/Api.git', branch: 'main', credentialsId: ''
         }
+    }
+}
         stage('Build Docker Image') {
             steps {
                 script {
