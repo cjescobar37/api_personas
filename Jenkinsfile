@@ -5,15 +5,16 @@ pipeline {
         DOCKERHUB_CREDENTIALS_ID = 'c1867532-75be-49ff-ad27-a5d29d6aa100' 
         DOCKERHUB_REPOSITORY = 'cescobar37/devopsprueba1'
         IMAGE_NAME = 'cescobar37/devopsprueba1:latest'
-        GIT_CREDENTIALS_ID = 'a0ef1ab7-ddcc-42cd-a344-afa613eaf64e'
         TAG = "latest"
+        GIT_CREDENTIALS_ID = 'a0ef1ab7-ddcc-42cd-a344-afa613eaf64e'
+        WORKSPACE = pwd()
     }
 
     stages {
         stage('Checkout') {
             steps {
                 script {
-                     git url: 'https://github.com/cescobar37/api_personas.git', branch: 'main', credentialsId: "${GIT_CREDENTIALS_ID}"
+                     git credentialsId: "${GIT_CREDENTIALS_ID}", url: 'https://github.com/cescobar37/api_personas.git', branch: 'main'           
                 }
             }
         }
