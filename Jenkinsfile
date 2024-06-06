@@ -8,6 +8,7 @@ pipeline {
         TAG = "latest"
     }
 
+    stages {
         stage('Checkout') {
             steps {
                 script {
@@ -48,4 +49,5 @@ pipeline {
                 }
             }
         }
+    }
 }
