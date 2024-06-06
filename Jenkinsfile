@@ -12,7 +12,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    git url: 'https://github.com/cescobar37/Api.git', branch: 'main', credentialsId: ''
+                    git url: 'https://github.com/cescobar37/api_personas.git', branch: 'main', credentialsId: ''
                 }
             }
         }
