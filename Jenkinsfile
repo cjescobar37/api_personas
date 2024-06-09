@@ -4,7 +4,7 @@ pipeline {
     stages{
         stage('Clone Repository'){
             steps{
-                git 'https://github.com/cjescobar37/api_personas', branch: 'main'
+                git url: 'https://github.com/cjescobar37/api_personas', branch: 'main'
             }
         }
 
