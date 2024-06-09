@@ -1,55 +1,31 @@
 pipeline {
     agent any
-
-    environment {
-        DOCKERHUB_CREDENTIALS_ID = 'c1867532-75be-49ff-ad27-a5d29d6aa100' 
-        DOCKERHUB_REPOSITORY = 'cescobar37/devopsprueba1'
-        IMAGE_NAME = 'cescobar37/devopsprueba1:latest'
-        TAG = "latest"
-        GIT_CREDENTIALS_ID = 'a0ef1ab7-ddcc-42cd-a344-afa613eaf64e'
-        WORKSPACE = pwd()
+    tools {
+        dockerTool 'TestAppAngularDocker'
     }
+    stages{
+        stage('Clone Repository'){
+            steps{
+                git 'https://github.com/cjescobar37/api_personas'
+            }
+        }
 
-    stages {
-        stage('Checkout') {
-            steps {
+        stage('Build Docker Image'){
+            steps{
                 script {
-                     git credentialsId: "${GIT_CREDENTIALS_ID}", url: 'https://github.com/cescobar37/api_personas.git', branch: 'main'           
+                    sh '/usr/local/bin/docker build -t api-personas-test .'
                 }
             }
         }
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    dockerImage = docker.build("${DOCKERHUB_REPOSITORY}:${TAG}")
-                }
-            }
-        }
-        stage('Lint Dockerfile') {
-            steps {
-                script {
-                    def hadolintPath = 'C:\\util\\hadolint.exe'
-                    def dockerfilePath = "${WORKSPACE}\\Dockerfile"
 
-                    bat "${hadolintPath} ${dockerfilePath}"
-                }
-            }
-        }
-        stage('Run Docker Container') {
-            steps {
+        stage('Build Docker Container'){
+            steps{
                 script {
-                    dockerImage.run("-d -p 8080:80")
+                    sh '/usr/local/bin/docker run -p 8090:80 api-personas-test .'
                 }
             }
         }
-        stage('Push to DockerHub') {
-            steps {
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS_ID) {
-                        dockerImage.push("${TAG}")
-                    }
-                }
-            }
-        }
+
+
     }
 }
